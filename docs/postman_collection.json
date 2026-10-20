@@ -1,0 +1,48 @@
+{
+  "info": {
+    "name": "Employee Profile Management API",
+    "description": "INET Golang Final Project: all seven endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:3000/api/v1" },
+    { "key": "employeeId", "value": "REPLACE_WITH_EMPLOYEE_UUID" },
+    { "key": "keyword", "value": "สมชาย" },
+    { "key": "username", "value": "testgo" },
+    { "key": "password", "value": "23012023" }
+  ],
+  "item": [
+    {
+      "name": "Create Employee",
+      "request": {
+        "method": "POST",
+        "auth": { "type": "basic", "basic": [ { "key": "username", "value": "{{username}}", "type": "string" }, { "key": "password", "value": "{{password}}", "type": "string" } ] },
+        "header": [ { "key": "Content-Type", "value": "application/json" } ],
+        "body": { "mode": "raw", "raw": "{\n  \"name\": \"สมชาย\",\n  \"lastname\": \"ตัวอย่าง\",\n  \"birthday\": \"1995-04-20\",\n  \"email\": \"somchai@example.com\",\n  \"tel\": \"0812345678\"\n}" },
+        "url": "{{baseUrl}}/users"
+      }
+    },
+    { "name": "Get All Employees", "request": { "method": "GET", "auth": { "type": "noauth" }, "url": "{{baseUrl}}/users" } },
+    { "name": "Get Employee by UUID", "request": { "method": "GET", "auth": { "type": "noauth" }, "url": "{{baseUrl}}/users/{{employeeId}}" } },
+    {
+      "name": "Update Employee",
+      "request": {
+        "method": "PUT",
+        "auth": { "type": "basic", "basic": [ { "key": "username", "value": "{{username}}", "type": "string" }, { "key": "password", "value": "{{password}}", "type": "string" } ] },
+        "header": [ { "key": "Content-Type", "value": "application/json" } ],
+        "body": { "mode": "raw", "raw": "{\n  \"name\": \"สมชาย\",\n  \"lastname\": \"ตัวอย่าง\",\n  \"birthday\": \"1995-04-20\",\n  \"email\": \"somchai.updated@example.com\",\n  \"tel\": \"0812345678\"\n}" },
+        "url": "{{baseUrl}}/users/{{employeeId}}"
+      }
+    },
+    {
+      "name": "Delete Employee",
+      "request": {
+        "method": "DELETE",
+        "auth": { "type": "basic", "basic": [ { "key": "username", "value": "{{username}}", "type": "string" }, { "key": "password", "value": "{{password}}", "type": "string" } ] },
+        "url": "{{baseUrl}}/users/{{employeeId}}"
+      }
+    },
+    { "name": "Get Generations", "request": { "method": "GET", "auth": { "type": "noauth" }, "url": "{{baseUrl}}/users/generations" } },
+    { "name": "Search Employees", "request": { "method": "GET", "auth": { "type": "noauth" }, "url": "{{baseUrl}}/users/search/{{keyword}}" } }
+  ]
+}
